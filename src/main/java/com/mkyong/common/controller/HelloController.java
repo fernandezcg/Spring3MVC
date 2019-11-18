@@ -5,6 +5,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * Represents HelloController.
+ */
 @Controller
 @RequestMapping("/welcome")
 public class HelloController {
@@ -15,7 +18,7 @@ public class HelloController {
  * @return      hello
  */
   @RequestMapping(method = RequestMethod.GET)
-  public final String printWelcome(final ModelMap model) {
+  public final String printWelcome(@param final ModelMap model) {
     model.addAttribute("message", "Spring Security Hello World");
     return "hello";
   }
