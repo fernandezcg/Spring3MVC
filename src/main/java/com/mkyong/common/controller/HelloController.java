@@ -18,7 +18,7 @@ public class HelloController {
  * @return      hello
  */
   @RequestMapping(method = RequestMethod.GET)
-  public final String printWelcome(@param final ModelMap model) {
+  public final String printWelcome(final ModelMap model) {
     model.addAttribute("message", "Spring Security Hello World");
     return "hello";
   }
