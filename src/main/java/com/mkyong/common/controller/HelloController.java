@@ -19,7 +19,7 @@ public final class HelloController {
  * @return      hello
  */
   @RequestMapping(method = RequestMethod.GET)
-  public final String printWelcome(@RequestParam final ModelMap model) {
+  public String printWelcome(@RequestParam final ModelMap model) {
     model.addAttribute("message", "Spring Security Hello World");
     return "hello";
   }
