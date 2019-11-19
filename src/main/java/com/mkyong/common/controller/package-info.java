@@ -1,1 +1,1 @@
-package com.mkyong.common,controller;
+package com.mkyong.common.controller;
