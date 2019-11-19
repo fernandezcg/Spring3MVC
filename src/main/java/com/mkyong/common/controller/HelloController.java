@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/welcome")
-public class HelloController {
+public final class HelloController {
 
  /**
  * printWelcome.
