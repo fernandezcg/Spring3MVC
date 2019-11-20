@@ -1,27 +1,36 @@
 pipeline {
     agent any
+    tools {
+        jdk 'jdk8'
+        maven 'localMaven' 
+    }
     stages {
-      stage('Non-Parallel Stage') {
-        steps {
-                echo 'This stage will be executed first'
-                }
-        }
-        stage('Run Tests') {
-            parallel {
-                stage('Test On Windows') {
-                    steps {
-			                  sleep 10
-                        echo "Task1 on Parallel"
-                    }
-                    
-                }
-                stage('Test On Master') {
-                    steps {
-			    	           sleep 10
-				               echo "Task2 on Parallel"
-			              }
-                }
+        stage('Build') {
+            steps {
+                git 'https://github.com/fernandezcg/Spring3MVC.git'
+                echo 'Descargado'
+                bat "Build.bat"
+                echo 'Construido'
             }
         }
-    }
+        stage('Quality') {
+            steps {
+                bat "Quality.bat"
+                echo 'Quality...'
+                checkstyle canComputeNew: false, defaultEncoding: '', failedTotalHigh: '7', failedTotalLow: '20', failedTotalNormal: '10', healthy: '', pattern: '', unHealthy: '', unstableTotalHigh: '10', unstableTotalLow: '40', unstableTotalNormal: '20'
+            }
+            post { 
+              always { 
+                echo 'always!'
+              }
+              unstable { 
+                echo 'unstable!'
+              }
+              success { 
+                echo 'sucess!'
+              }
+            }
+
+        }
+   }
 }
