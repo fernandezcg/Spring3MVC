@@ -4,6 +4,7 @@ pipeline {
         jdk 'jdk8'
         maven 'localMaven' 
     }
+    triggers { pollSCM('* * * * *') }    
     stages {
         stage('Build') {
             steps {
